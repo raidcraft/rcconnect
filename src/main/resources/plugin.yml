@@ -1,5 +1,5 @@
-name: RCAuction
-main: de.raidcraft.auction.AuctionPlugin
+name: RCConnect
+main: de.raidcraft.connect.ConnectPlugin
 version: ${project.version}#${build.number}
 author: Dragonfire
 website: www.raid-craft.de
