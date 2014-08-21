@@ -3,6 +3,8 @@ package de.raidcraft.connect.tables;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.util.com.google.common.base.Joiner;
+import net.minecraft.util.com.google.common.base.Splitter;
+import net.minecraft.util.com.google.common.collect.Iterables;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "connect_player")
 public class TConnectPlayer {
+
     @Transient
     private final static String splitter = "|~|";
     @Id
@@ -30,7 +33,7 @@ public class TConnectPlayer {
 
     public String[] getEncodedArgs() {
 
-        return args.split(splitter);
+        return Iterables.toArray(Splitter.on(splitter).split(args), String.class);
     }
 
     public void setEncodedArags(String[] args) {

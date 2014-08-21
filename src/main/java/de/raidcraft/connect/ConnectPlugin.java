@@ -46,6 +46,12 @@ public class ConnectPlugin extends BasePlugin {
         //TODO: implement
     }
 
+    @Override
+    public void reload() {
+
+        config.reload();
+    }
+
     public void send(String newServer, String cause, String[] args, Player... players) {
 
         for (Player player : players) {
@@ -115,7 +121,7 @@ public class ConnectPlugin extends BasePlugin {
         public boolean teleportIn = false;
         @Comment("The current servername in the bunggee config")
         @Setting("connect.bungee-servername")
-        public String serverName = null;
+        public String serverName = "Please enter hte bungee server name";
         @Comment("The bungee dungeon servername")
         @Setting("connect.dungeon.servername")
         public String dungeonServerName = "dungeon";
