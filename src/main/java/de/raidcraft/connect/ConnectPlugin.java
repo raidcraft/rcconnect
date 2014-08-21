@@ -9,6 +9,7 @@ import de.raidcraft.api.config.Comment;
 import de.raidcraft.api.config.ConfigurationBase;
 import de.raidcraft.api.config.MultiComment;
 import de.raidcraft.api.config.Setting;
+import de.raidcraft.connect.api.raidcraftevents.RE_PlayerSwitchServer;
 import de.raidcraft.connect.commands.DungeonConnect;
 import de.raidcraft.connect.listeners.ServerSwitchListener;
 import de.raidcraft.connect.tables.TConnectPlayer;
@@ -125,5 +126,13 @@ public class ConnectPlugin extends BasePlugin {
         @Comment("The bungee dungeon servername")
         @Setting("connect.dungeon.servername")
         public String dungeonServerName = "dungeon";
+    }
+
+    public List<TConnectPlayer> getSimilarPlayerIds(RE_PlayerSwitchServer event) {
+
+        return getDatabase().find(TConnectPlayer.class).where()
+                .eq("new_server", getConfig().serverName)
+                .eq("cause", event.getCause())
+                .eq("args", TConnectPlayer.decode(event.getArgs())).findList();
     }
 }

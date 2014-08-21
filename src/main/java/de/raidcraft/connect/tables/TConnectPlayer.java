@@ -33,11 +33,21 @@ public class TConnectPlayer {
 
     public String[] getEncodedArgs() {
 
-        return Iterables.toArray(Splitter.on(splitter).split(args), String.class);
+        return encode(args);
     }
 
     public void setEncodedArags(String[] args) {
 
-        this.args = Joiner.on(splitter).join(args);
+        this.args = decode(args);
+    }
+
+    public static String decode(String[] args) {
+
+        return Joiner.on(splitter).join(args);
+    }
+
+    public static String[] encode(String args) {
+
+        return Iterables.toArray(Splitter.on(splitter).split(args), String.class);
     }
 }
