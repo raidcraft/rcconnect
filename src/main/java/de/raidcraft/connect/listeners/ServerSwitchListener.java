@@ -4,7 +4,6 @@ import de.raidcraft.RaidCraft;
 import de.raidcraft.connect.ConnectPlugin;
 import de.raidcraft.connect.api.raidcraftevents.RE_PlayerSwitchServer;
 import de.raidcraft.connect.tables.TConnectPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -28,7 +27,7 @@ public class ServerSwitchListener implements Listener {
 
         Player player = event.getPlayer();
         TConnectPlayer tPlayer = plugin.getDatabase().find(TConnectPlayer.class)
-                .where().eq("new_server", Bukkit.getServerName())
+                .where().eq("new_server", plugin.getConfig().serverName)
                 .eq("player", player.getUniqueId()).findUnique();
         RE_PlayerSwitchServer switchEvent =
                 new RE_PlayerSwitchServer(player, null, null, null);
@@ -42,9 +41,12 @@ public class ServerSwitchListener implements Listener {
             if (switchEvent.getOldServer() == null) {
                 plugin.getLogger().warning("Port back server is null of player ("
                         + player.getName() + ") ");
-                return;
+            } else {
+                plugin.teleport(player, switchEvent.getOldServer());
             }
-            plugin.teleport(player, switchEvent.getOldServer());
+        }
+        if (tPlayer != null) {
+            plugin.getDatabase().delete(tPlayer);
         }
     }
 

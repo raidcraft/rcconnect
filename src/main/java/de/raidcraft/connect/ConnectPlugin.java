@@ -5,6 +5,7 @@ import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.NestedCommand;
 import de.raidcraft.api.BasePlugin;
+import de.raidcraft.api.config.Comment;
 import de.raidcraft.api.config.ConfigurationBase;
 import de.raidcraft.api.config.MultiComment;
 import de.raidcraft.api.config.Setting;
@@ -43,6 +44,22 @@ public class ConnectPlugin extends BasePlugin {
     @Override
     public void disable() {
         //TODO: implement
+    }
+
+    public void send(String newServer, String cause, String[] args, Player... players) {
+
+        for (Player player : players) {
+            TConnectPlayer tPlayer = new TConnectPlayer();
+            tPlayer.setOldServer(config.serverName);
+            tPlayer.setCause(cause);
+            tPlayer.setEncodedArags(args);
+            tPlayer.setNewServer(newServer);
+            tPlayer.setPlayer(player.getUniqueId());
+            getDatabase().save(tPlayer);
+        }
+        for (Player player : players) {
+            teleport(player, newServer);
+        }
     }
 
     public void teleport(Player player, String server) {
@@ -96,5 +113,8 @@ public class ConnectPlugin extends BasePlugin {
                 "event can be cancelled and players port back to old Server"})
         @Setting("connect.teleport-in")
         public boolean teleportIn = false;
+        @Comment("The servername in the bunggee config")
+        @Setting("connect.bungee-servername")
+        public String serverName = null;
     }
 }
