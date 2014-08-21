@@ -28,8 +28,8 @@ public class ServerSwitchListener implements Listener {
 
         Player player = event.getPlayer();
         TConnectPlayer tPlayer = plugin.getDatabase().find(TConnectPlayer.class)
-                .where().eq("newWorld", Bukkit.getServerName())
-                .eq("player", player.getLocation()).findUnique();
+                .where().eq("new_server", Bukkit.getServerName())
+                .eq("player", player.getUniqueId()).findUnique();
         RE_PlayerSwitchServer switchEvent =
                 new RE_PlayerSwitchServer(player, null, null, null);
         if (tPlayer != null) {

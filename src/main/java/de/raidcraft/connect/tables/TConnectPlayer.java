@@ -7,6 +7,7 @@ import net.minecraft.util.com.google.common.base.Joiner;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.UUID;
 
 /**
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "connect_player")
 public class TConnectPlayer {
-
+    @Transient
     private final static String splitter = "|~|";
     @Id
     private int id;

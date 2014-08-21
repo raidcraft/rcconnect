@@ -33,12 +33,11 @@ public class ConnectPlugin extends BasePlugin {
     public void enable() {
 
         config = configure(new LocalConfiguration(this));
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         registerCommands(BaseCommands.class);
         if (config.teleportIn) {
             registerEvents(new ServerSwitchListener(this));
         }
-
-        //        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override
