@@ -113,8 +113,11 @@ public class ConnectPlugin extends BasePlugin {
                 "event can be cancelled and players port back to old Server"})
         @Setting("connect.teleport-in")
         public boolean teleportIn = false;
-        @Comment("The servername in the bunggee config")
+        @Comment("The current servername in the bunggee config")
         @Setting("connect.bungee-servername")
         public String serverName = null;
+        @Comment("The bungee dungeon servername")
+        @Setting("connect.dungeon.servername")
+        public String dungeonServerName = "dungeon";
     }
 }

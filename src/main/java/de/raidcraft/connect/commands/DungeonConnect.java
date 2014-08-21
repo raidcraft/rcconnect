@@ -17,6 +17,8 @@ import java.util.Date;
 public class DungeonConnect {
 
     private final ConnectPlugin plugin;
+    public final static String START_INSTACE = "dungeon.start";
+
 
     public DungeonConnect(ConnectPlugin module) {
 
@@ -31,6 +33,6 @@ public class DungeonConnect {
     public void test(CommandContext context, CommandSender sender) throws CommandException {
 
         String[] args = new String[]{"w", new Date() + "", MathUtil.RANDOM.nextInt() + ""};
-        plugin.send("dungeon", "dungeon.start", args, (Player) sender);
+        plugin.send(plugin.getConfig().dungeonServerName, START_INSTACE, args, (Player) sender);
     }
 }
