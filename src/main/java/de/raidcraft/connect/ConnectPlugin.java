@@ -122,7 +122,7 @@ public class ConnectPlugin extends BasePlugin {
         public boolean teleportIn = false;
         @Comment("The current servername in the bunggee config")
         @Setting("connect.bungee-servername")
-        public String serverName = "Please enter hte bungee server name";
+        public String serverName = "Please enter here bungee server name";
         @Comment("The bungee dungeon servername")
         @Setting("connect.dungeon.servername")
         public String dungeonServerName = "dungeon";
