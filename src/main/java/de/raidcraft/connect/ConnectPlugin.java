@@ -104,8 +104,8 @@ public class ConnectPlugin extends BasePlugin {
     public class BaseCommands {
 
         @Command(
-                aliases = {"rcc", "connect"},
-                desc = "rcconnect"
+                aliases = {"rccd", "cdungeon", "::d"},
+                desc = "rcconnect dungeon"
         )
         @NestedCommand(value = DungeonConnect.class)
         public void dungeon(CommandContext args, CommandSender sender) throws CommandException {

@@ -5,8 +5,9 @@ import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.CommandPermissions;
 import de.raidcraft.connect.ConnectPlugin;
+import de.raidcraft.util.CommandUtil;
 import de.raidcraft.util.MathUtil;
-import org.bukkit.Bukkit;
+import de.raidcraft.util.PlayerUtil;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -29,14 +30,26 @@ public class DungeonConnect {
     }
 
     @Command(
-            aliases = {"test"},
-            desc = "test"
+            aliases = {"start"},
+            desc = "start a dzbgeon",
+            min = 2,
+            usage = "[dungeon_name] [radius_around_player] (player)"
     )
-    @CommandPermissions("connect.dungeon.test")
-    public void test(CommandContext context, CommandSender sender) throws CommandException {
+    @CommandPermissions("connect.dungeon.start")
+    public void start(CommandContext context, CommandSender sender) throws CommandException {
 
-        String[] args = new String[]{"w", new Date() + "", MathUtil.RANDOM.nextInt() + ""};
-        List<Player> uuids = Bukkit.getOnlinePlayers().stream().collect(Collectors.toList());
+        Player player;
+        String dungeonName = context.getString(0);
+        int radius = context.getInteger(1, 0);
+        if (context.argsLength() == 3) {
+            player = CommandUtil.grabPlayer(context.getString(2));
+        } else {
+            player = (Player) sender;
+        }
+        // 0: dungeon name; 1-2: to identify all players of the group
+        String[] args = new String[]{dungeonName, new Date() + "", MathUtil.RANDOM.nextInt() + ""};
+        List<Player> uuids = PlayerUtil.getPlayerNearby(player, radius)
+                .stream().collect(Collectors.toList());
         plugin.send(plugin.getConfig().dungeonServerName, START_INSTACE, args,
                 uuids.toArray(new Player[uuids.size()]));
     }

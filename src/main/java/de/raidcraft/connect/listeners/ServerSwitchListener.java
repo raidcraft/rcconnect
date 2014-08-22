@@ -36,7 +36,11 @@ public class ServerSwitchListener implements Listener {
             switchEvent.setCause(tPlayer.getCause());
             switchEvent.setOldServer(tPlayer.getOldServer());
         }
-        RaidCraft.callEvent(switchEvent);
+        try {
+            RaidCraft.callEvent(switchEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (switchEvent.isCancelled()) {
             if (switchEvent.getOldServer() == null) {
                 plugin.getLogger().warning("Port back server is null of player ("
