@@ -69,6 +69,11 @@ public class ConnectPlugin extends BasePlugin {
         }
     }
 
+    public void teleportBack(Player player) {
+
+        teleport(player, getConfig().mainServerName);
+    }
+
     public void teleport(Player player, String server) {
 
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -126,6 +131,9 @@ public class ConnectPlugin extends BasePlugin {
         @Comment("The bungee dungeon servername")
         @Setting("connect.dungeon.servername")
         public String dungeonServerName = "dungeon";
+        @Comment("The bungee main servername")
+        @Setting("connect.main.servername")
+        public String mainServerName = "main";
     }
 
     public List<TConnectPlayer> getSimilarPlayerIds(RE_PlayerSwitchServer event) {
