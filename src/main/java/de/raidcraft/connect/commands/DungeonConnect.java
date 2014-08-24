@@ -22,6 +22,7 @@ public class DungeonConnect {
 
     private final ConnectPlugin plugin;
     public final static String START_INSTACE = "dungeon.start";
+    public final static String CONTINUE_INSTACE = "dungeon.continue";
 
 
     public DungeonConnect(ConnectPlugin module) {
@@ -31,9 +32,9 @@ public class DungeonConnect {
 
     @Command(
             aliases = {"start"},
-            desc = "start a dzbgeon",
+            desc = "start a dungeon",
             min = 2,
-            usage = "[dungeon_name] [radius_around_player] (player)"
+            usage = "<dungeon_name> <radius_around_player> (player)"
     )
     @CommandPermissions("connect.dungeon.start")
     public void start(CommandContext context, CommandSender sender) throws CommandException {
@@ -52,5 +53,22 @@ public class DungeonConnect {
                 .stream().collect(Collectors.toList());
         plugin.send(plugin.getConfig().dungeonServerName, START_INSTACE, args,
                 uuids.toArray(new Player[uuids.size()]));
+    }
+
+    @Command(
+            aliases = {"continue"},
+            desc = "continue the last instance ",
+            usage = "(player)"
+    )
+    @CommandPermissions("connect.dungeon.start")
+    public void continueInstance(CommandContext context, CommandSender sender) throws CommandException {
+
+        Player player;
+        if (context.argsLength() == 1) {
+            player = CommandUtil.grabPlayer(context.getString(0));
+        } else {
+            player = (Player) sender;
+        }
+        plugin.send(plugin.getConfig().dungeonServerName, CONTINUE_INSTACE, new String[0], player);
     }
 }

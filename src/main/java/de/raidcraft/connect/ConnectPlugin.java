@@ -134,6 +134,9 @@ public class ConnectPlugin extends BasePlugin {
         @Comment("The bungee main servername")
         @Setting("connect.main.servername")
         public String mainServerName = "main";
+        @Comment("Seconds before player port back, if to fast it maybe ignored")
+        @Setting("connect.port-back-seconds")
+        public int portBackSeconds = 1;
     }
 
     public List<TConnectPlayer> getSimilarPlayerIds(RE_PlayerSwitchServer event) {

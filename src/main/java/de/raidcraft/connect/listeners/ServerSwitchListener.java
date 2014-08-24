@@ -4,6 +4,8 @@ import de.raidcraft.RaidCraft;
 import de.raidcraft.connect.ConnectPlugin;
 import de.raidcraft.connect.api.raidcraftevents.RE_PlayerSwitchServer;
 import de.raidcraft.connect.tables.TConnectPlayer;
+import de.raidcraft.util.TimeUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -46,7 +48,10 @@ public class ServerSwitchListener implements Listener {
                 plugin.getLogger().warning("Port back server is null of player ("
                         + player.getName() + ") ");
             } else {
-                plugin.teleport(player, switchEvent.getOldServer());
+                // delay port back on next tick, otherwise it is to fast
+                Bukkit.getScheduler().runTaskLater(plugin, () ->
+                                plugin.teleport(player, switchEvent.getOldServer()),
+                        TimeUtil.secondsToTicks(plugin.getConfig().portBackSeconds));
             }
         }
         if (tPlayer != null) {
