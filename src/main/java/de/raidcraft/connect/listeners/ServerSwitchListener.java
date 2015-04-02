@@ -2,7 +2,7 @@ package de.raidcraft.connect.listeners;
 
 import de.raidcraft.RaidCraft;
 import de.raidcraft.connect.ConnectPlugin;
-import de.raidcraft.connect.api.raidcraftevents.RE_PlayerSwitchServer;
+import de.raidcraft.connect.api.events.RCPlayerChangeServerEvent;
 import de.raidcraft.connect.tables.TConnectPlayer;
 import de.raidcraft.util.TimeUtil;
 import org.bukkit.Bukkit;
@@ -31,8 +31,8 @@ public class ServerSwitchListener implements Listener {
         TConnectPlayer tPlayer = plugin.getDatabase().find(TConnectPlayer.class)
                 .where().eq("new_server", plugin.getConfig().serverName)
                 .eq("player", player.getUniqueId()).findUnique();
-        RE_PlayerSwitchServer switchEvent =
-                new RE_PlayerSwitchServer(player, null, null, null);
+        RCPlayerChangeServerEvent switchEvent =
+                new RCPlayerChangeServerEvent(player, null, null, null);
         if (tPlayer != null) {
             switchEvent.setArgs(tPlayer.getEncodedArgs());
             switchEvent.setCause(tPlayer.getCause());

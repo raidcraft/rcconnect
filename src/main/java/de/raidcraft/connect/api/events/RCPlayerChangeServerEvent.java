@@ -1,4 +1,4 @@
-package de.raidcraft.connect.api.raidcraftevents;
+package de.raidcraft.connect.api.events;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +12,7 @@ import org.bukkit.event.HandlerList;
  */
 @Setter
 @Getter
-public class RE_PlayerSwitchServer extends Event implements Cancellable {
+public class RCPlayerChangeServerEvent extends Event implements Cancellable {
 
     boolean cancelled = false;
     private Player player;
@@ -20,7 +20,7 @@ public class RE_PlayerSwitchServer extends Event implements Cancellable {
     private String cause;
     private String[] args;
 
-    public RE_PlayerSwitchServer(Player player, String oldServer, String cause, String[] args) {
+    public RCPlayerChangeServerEvent(Player player, String oldServer, String cause, String[] args) {
 
         this.player = player;
         this.cause = cause;
