@@ -1,10 +1,10 @@
 package de.raidcraft.connect.tables;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.util.com.google.common.base.Joiner;
-import net.minecraft.util.com.google.common.base.Splitter;
-import net.minecraft.util.com.google.common.collect.Iterables;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,5 +1,7 @@
 package de.raidcraft.connect;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
@@ -14,8 +16,6 @@ import de.raidcraft.connect.commands.DungeonConnect;
 import de.raidcraft.connect.listeners.ServerSwitchListener;
 import de.raidcraft.connect.tables.TConnectPlayer;
 import lombok.Getter;
-import net.minecraft.util.com.google.common.io.ByteArrayDataOutput;
-import net.minecraft.util.com.google.common.io.ByteStreams;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
