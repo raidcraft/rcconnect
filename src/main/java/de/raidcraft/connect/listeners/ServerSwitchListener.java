@@ -30,7 +30,7 @@ public class ServerSwitchListener implements Listener {
         Player player = event.getPlayer();
         TConnectPlayer tPlayer = plugin.getDatabase().find(TConnectPlayer.class)
                 .where().eq("new_server", plugin.getConfig().serverName)
-                .eq("player", player.getUniqueId()).findUnique();
+                .eq("player", player.getUniqueId()).findOne();
         RCPlayerChangeServerEvent switchEvent =
                 new RCPlayerChangeServerEvent(player, null, null, null);
         if (tPlayer != null) {

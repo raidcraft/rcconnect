@@ -97,7 +97,6 @@ public class ConnectPlugin extends BasePlugin {
         } catch (PersistenceException e) {
             e.printStackTrace();
             getLogger().warning("Installing database for " + getDescription().getName() + " due to first time usage");
-            installDDL();
         }
     }
 
