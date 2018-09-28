@@ -28,7 +28,7 @@ public class ServerSwitchListener implements Listener {
     public void join(PlayerJoinEvent event) {
 
         Player player = event.getPlayer();
-        TConnectPlayer tPlayer = plugin.getDatabase().find(TConnectPlayer.class)
+        TConnectPlayer tPlayer = plugin.getRcDatabase().find(TConnectPlayer.class)
                 .where().eq("new_server", plugin.getConfig().serverName)
                 .eq("player", player.getUniqueId()).findOne();
         RCPlayerChangeServerEvent switchEvent =
@@ -55,7 +55,7 @@ public class ServerSwitchListener implements Listener {
             }
         }
         if (tPlayer != null) {
-            plugin.getDatabase().delete(tPlayer);
+            plugin.getRcDatabase().delete(tPlayer);
         }
     }
 

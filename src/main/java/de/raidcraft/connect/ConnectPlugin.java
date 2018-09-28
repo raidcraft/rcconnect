@@ -62,7 +62,7 @@ public class ConnectPlugin extends BasePlugin {
             tPlayer.setEncodedArags(args);
             tPlayer.setNewServer(newServer);
             tPlayer.setPlayer(player.getUniqueId());
-            getDatabase().save(tPlayer);
+            getRcDatabase().save(tPlayer);
         }
         for (Player player : players) {
             teleport(player, newServer);
@@ -93,7 +93,7 @@ public class ConnectPlugin extends BasePlugin {
     private void setupDatabase() {
 
         try {
-            getDatabase();
+            getRcDatabase();
         } catch (PersistenceException e) {
             e.printStackTrace();
             getLogger().warning("Installing database for " + getDescription().getName() + " due to first time usage");
@@ -140,7 +140,7 @@ public class ConnectPlugin extends BasePlugin {
 
     public List<TConnectPlayer> getSimilarPlayerIds(RCPlayerChangeServerEvent event) {
 
-        return getDatabase().find(TConnectPlayer.class).where()
+        return getRcDatabase().find(TConnectPlayer.class).where()
                 .eq("new_server", getConfig().serverName)
                 .eq("cause", event.getCause())
                 .eq("args", TConnectPlayer.decode(event.getArgs())).findList();
