@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<migration xmlns="http://ebean-orm.github.io/xml/ns/dbmigration">
+    <changeSet type="apply">
+        <createTable name="rc_connect_player" pkName="pk_rc_connect_player">
+            <column name="id" type="integer" primaryKey="true"/>
+            <column name="player" type="uuid"/>
+            <column name="new_server" type="varchar"/>
+            <column name="old_server" type="varchar"/>
+            <column name="cause" type="varchar"/>
+            <column name="args" type="varchar"/>
+        </createTable>
+    </changeSet>
+</migration>

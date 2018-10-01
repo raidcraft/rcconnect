@@ -18,7 +18,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "connect_player")
+@Table(name = "rc_connect_player")
 public class TConnectPlayer {
 
     @Transient

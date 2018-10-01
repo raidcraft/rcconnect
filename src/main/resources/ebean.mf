@@ -1,0 +1,3 @@
+entity-packages: de.raidcraft.connect
+transactional-packages: de.raidcraft.connect
+querybean-packages: de.raidcraft.connect
